@@ -163,7 +163,7 @@ bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock --color=111111 --nofork
 bindsym $mod+b border toggle
 bindsym XF86AudioMute exec /usr/bin/amixer -q -c 0 set Master toggle && /usr/bin/amixer -q -c 1 set PCM toggle
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off
-
+bindsym $mod+Shift+s exec /usr/bin/screenkey
 
 assign [class="^Thunderbird$"] 2
 assign [class="^Iceweasel$" instance="^Navigator$"] 3
@@ -172,7 +172,9 @@ for_window [instance="^codeblocks$"] floating enable
 for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
 assign [class="^banshee$"] 10
 
-workspace_auto_back_and_forth yes
+for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
+
+workspace_auto_back_and_forth no
 
 
 new_float 1pixel
