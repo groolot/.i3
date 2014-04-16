@@ -161,7 +161,15 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot -solid "#000000"
 bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock --color=111111 --nofork
 bindsym $mod+b border toggle
-bindsym XF86AudioMute exec /usr/bin/amixer -q -c 0 set Master toggle && /usr/bin/amixer -q -c 1 set PCM toggle
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ 0.05
+bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ +0.1
+bindsym XF86AudioPlay exec /usr/bin/banshee --toggle-playing
+bindsym XF86AudioNext exec /usr/bin/banshee --next
+bindsym XF86AudioPrev exec /usr/bin/banshee --previous
+bindsym XF86Display exec lxrandr
+bindsym Print exec /usr/bin/gnome-screenshot -f ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png -w
+bindsym Control+Mod1+Print exec /usr/bin/gnome-screenshot -f ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png -a
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off
 bindsym $mod+Shift+s exec /usr/bin/screenkey
 
@@ -170,6 +178,7 @@ assign [class="^Iceweasel$" instance="^Navigator$"] 3
 assign [class="^Codeblocks$"] 4
 for_window [instance="^codeblocks$"] floating enable
 for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
+assign [class="^Xchat$"] 9
 assign [class="^banshee$"] 10
 
 for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
