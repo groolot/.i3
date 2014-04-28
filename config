@@ -162,8 +162,8 @@ exec --no-startup-id xsetroot -solid "#000000"
 bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock --color=111111 --nofork
 bindsym $mod+b border toggle
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ 0.05
-bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ +0.1
+bindsym XF86AudioLowerVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ -0.1
+bindsym XF86AudioRaiseVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +0.1
 bindsym XF86AudioPlay exec /usr/bin/banshee --toggle-playing
 bindsym XF86AudioNext exec /usr/bin/banshee --next
 bindsym XF86AudioPrev exec /usr/bin/banshee --previous
