@@ -159,6 +159,11 @@ bar {
 
 exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot -solid "#000000"
+exec xchat
+exec iceweasel
+exec banshee
+exec --no-startup-id eval $(gpg-agent --daemon)
+
 bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock --color=111111 --nofork
 bindsym $mod+b border toggle
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -174,6 +179,7 @@ bindsym $mod+Shift+x exec /usr/bin/xset b off s off
 bindsym $mod+Shift+s exec /usr/bin/screenkey
 
 assign [class="^Thunderbird$"] 2
+assign [class="^Icedove$"] 2
 assign [class="^Iceweasel$" instance="^Navigator$"] 3
 assign [class="^Codeblocks$"] 4
 for_window [instance="^codeblocks$"] floating enable
