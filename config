@@ -175,11 +175,7 @@ bar {
 }
 
 exec --no-startup-id nm-applet
-exec --no-startup-id xsetroot -solid "#000000"
-exec xchat
-exec iceweasel
-exec banshee
-#exec --no-startup-id eval $(gpg-agent --daemon)
+exec --no-startup-id xsetroot -solid "#ffffff"
 
 bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock --color=111111 --nofork
 bindsym $mod+b border toggle
@@ -196,6 +192,9 @@ bindsym $mod+Shift+x exec /usr/bin/xset b off s off
 bindsym $mod+Shift+s exec /usr/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
 
+set $libdir /usr/lib/pd/extra
+bindsym $mod+Shift+v exec pd -noaudio -nomidi -path $libdir/Gem -path $libdir/osc -path $libdir/pddp -lib Gem -open ~/Documents/Developpement/virtualslight/virtualslight.pd
+
 assign [class="^Thunderbird$"] 2
 assign [class="^Icedove$"] 2
 assign [class="^Iceweasel$" instance="^Navigator$"] 3
@@ -208,7 +207,6 @@ assign [class="^banshee$"] 10
 for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
 
 workspace_auto_back_and_forth yes
-
 
 new_float 1pixel
 hide_edge_borders both
