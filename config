@@ -192,6 +192,7 @@ assign [class="^Thunderbird$"] 2
 assign [class="^Icedove$"] 2
 assign [class="^Iceweasel$" instance="^Navigator$"] 3
 assign [class="^Codeblocks$"] 4
+assign [class="^QtCreator$"] 5
 for_window [instance="^codeblocks$"] floating enable
 for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
 assign [class="^Xchat$"] 9
