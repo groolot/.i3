@@ -192,7 +192,7 @@ bindsym Control+Mod1+Left exec /usr/bin/banshee --previous
 bindsym XF86Display exec lxrandr
 bindsym Print exec /usr/local/bin/maim -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off
-bindsym $mod+Shift+s exec /usr/bin/screenkey
+bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
 
 set $libdir /usr/lib/pd/extra
