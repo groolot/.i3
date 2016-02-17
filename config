@@ -199,6 +199,8 @@ assign [class="^Xchat$"] 9
 
 for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
 
+for_window [class="^[Dd]isplay$" instance="^[Dd]isplay$"] floating enable border none
+
 workspace_auto_back_and_forth yes
 
 
