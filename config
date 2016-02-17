@@ -24,7 +24,7 @@ font -misc-fixed-medium-r-normal--10-100-75-75-C-60-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal --hide-menubar
+bindsym $mod+Return exec xterm
 
 # kill focused window
 bindsym $mod+Shift+a kill
