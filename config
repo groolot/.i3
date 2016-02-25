@@ -207,4 +207,4 @@ workspace_auto_back_and_forth yes
 new_float 1pixel
 hide_edge_borders both
 
-exec xrandr --output LVDS1 --primary --mode 1366x768 --pos 0x0 --rotate normal --dpi 72
+exec xrandr --output LVDS1 --primary --mode 1366x768 --pos 0x0 --rotate normal --dpi 75
