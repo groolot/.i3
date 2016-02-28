@@ -24,7 +24,7 @@ font -misc-fixed-medium-r-normal--10-100-75-75-C-60-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec lxterminal
+bindsym $mod+Return exec xterm +ah -bc +cm -cn +dc -j -mesg -si +sk +uc -vb
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -198,14 +198,12 @@ bindsym $mod+n exec /usr/bin/nautilus
 set $libdir /usr/lib/pd/extra
 bindsym Control+Mod4+Mod1+v exec pd -noaudio -nomidi -path $libdir/Gem -path $libdir/osc -path $libdir/pddp -lib Gem -open /plebiscite/vsl-plebiscite/virtualslight.pd
 
-assign [class="^Thunderbird$"] 2
 assign [class="^Icedove$"] 2
 assign [class="^Iceweasel$" instance="^Navigator$"] 3
 assign [class="^Codeblocks$"] 4
 for_window [instance="^codeblocks$"] floating enable
 for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
-assign [class="^Xchat$"] 9
-assign [class="^banshee$"] 10
+assign [class="^Hvexchat$"] 9
 
 for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
 
@@ -215,6 +213,7 @@ new_float 1pixel
 hide_edge_borders both
 
 # X11 Compositor
-exec_always compton --backend glx
+bindsym Control+$mod+c exec compton --backend glx
+bindsym Control+$mod+Mod1+c exec pkill -9 compton
 bindsym $mod+Mod1+plus exec compton-trans -c +5
 bindsym $mod+Mod1+minus exec compton-trans -c -- -5
