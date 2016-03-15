@@ -191,7 +191,7 @@ bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
 
 assign [class="^Thunderbird$"] 2
 assign [class="^Icedove$"] 2
-assign [class="^Iceweasel$" instance="^Navigator$"] 3
+assign [class="^(Iceweasel|Firefox|chromium)$" instance="^(Navigator|chromium)$"] 3
 assign [class="^Codeblocks$"] 4
 assign [class="^QtCreator$"] 5
 for_window [instance="^codeblocks$"] floating enable
