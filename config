@@ -194,6 +194,7 @@ bindsym Print exec /usr/local/bin/maim -s ~/Images/screenshot-$(date "+%Y%m%d-%H
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off
 bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
+bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
 
 set $libdir /usr/lib/pd/extra
 bindsym Control+Mod4+Mod1+v exec pd -noaudio -nomidi -path $libdir/Gem -path $libdir/osc -path $libdir/pddp -lib Gem -open /plebiscite/vsl-plebiscite/virtualslight.pd
@@ -208,6 +209,8 @@ assign [class="^Xchat$"] 9
 assign [class="^banshee$"] 10
 
 for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
+for_window [class="^[Xx][Cc]lock$" instance="^[Xx][Cc]lock$"] floating enable border none
+for_window [class="^[Dd]isplay$" instance="^[Dd]isplay$"] floating enable border none
 
 workspace_auto_back_and_forth yes
 
