@@ -187,6 +187,7 @@ bindsym Control+Mod1+Print exec /usr/bin/gnome-screenshot -f ~/Images/screenshot
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off -dpms
 bindsym $mod+Shift+s exec /usr/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
+bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
 
 assign [class="^Thunderbird$"] 2
 assign [class="^Icedove$"] 2
@@ -198,7 +199,7 @@ for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
 assign [class="^Xchat$"] 9
 
 for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
-
+for_window [class="^[Xx][Cc]lock$" instance="^[Xx][Cc]lock$"] floating enable border none
 for_window [class="^[Dd]isplay$" instance="^[Dd]isplay$"] floating enable border none
 
 workspace_auto_back_and_forth yes
