@@ -194,19 +194,21 @@ bindsym Print exec /usr/local/bin/maim -s ~/Images/screenshot-$(date "+%Y%m%d-%H
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off
 bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
+bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
 
 set $libdir /usr/lib/pd/extra
 bindsym Control+Mod4+Mod1+v exec pd -noaudio -nomidi -path $libdir/Gem -path $libdir/osc -path $libdir/pddp -lib Gem -open /plebiscite/vsl-plebiscite/virtualslight.pd
 
 assign [class="^Icedove$"] 2
-assign [class="^Iceweasel$" instance="^Navigator$"] 3
-assign [class="^Firefox$" instance="^Navigator$"] 3
+assign [class="^(Iceweasel|Firefox|chromium)$" instance="^(Navigator|chromium)$"] 3
 assign [class="^Codeblocks$"] 4
 for_window [instance="^codeblocks$"] floating enable
 for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
 assign [class="^Hvexchat$"] 9
 
 for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
+for_window [class="^[Xx][Cc]lock$" instance="^[Xx][Cc]lock$"] floating enable border none
+for_window [class="^[Dd]isplay$" instance="^[Dd]isplay$"] floating enable border none
 
 workspace_auto_back_and_forth yes
 
@@ -214,7 +216,7 @@ new_float 1pixel
 hide_edge_borders both
 
 # X11 Compositor
-bindsym Control+$mod+c exec compton --backend glx
-bindsym Control+$mod+Mod1+c exec pkill -9 compton
-bindsym $mod+Mod1+plus exec compton-trans -c +5
-bindsym $mod+Mod1+minus exec compton-trans -c -- -5
+#bindsym Control+$mod+c exec compton --backend glx
+#bindsym Control+$mod+Mod1+c exec pkill -9 compton
+#bindsym $mod+Mod1+plus exec compton-trans -c +5
+#bindsym $mod+Mod1+minus exec compton-trans -c -- -5
