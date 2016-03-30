@@ -200,6 +200,7 @@ bindsym Control+Mod4+Mod1+v exec pd -noaudio -nomidi -path $libdir/Gem -path $li
 
 assign [class="^Icedove$"] 2
 assign [class="^Iceweasel$" instance="^Navigator$"] 3
+assign [class="^Firefox$" instance="^Navigator$"] 3
 assign [class="^Codeblocks$"] 4
 for_window [instance="^codeblocks$"] floating enable
 for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
