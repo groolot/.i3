@@ -205,7 +205,7 @@ assign [class="^Codeblocks$"] 4
 for_window [instance="^codeblocks$"] floating enable
 for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
 assign [class="^Hvexchat$"] 9
-assign [class="^qemu-system-.*$"] 0
+assign [class="^qemu-system-.*$"] 7
 for_window [class="^qemu-system-.*$"] floating disable border pixel 1
 
 for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
