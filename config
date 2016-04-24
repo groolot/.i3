@@ -11,16 +11,38 @@
 
 set $mod Mod4
 
+set $desktop_screen HDMI-0
+set $racked_screen DVI-I-1
+set $projection_screen DP-0
+
 set $ws1 1 
 set $ws2 2 
+    assign [class="^Icedove$"] $ws2
 set $ws3 3 
+    assign [class="^(Iceweasel|Firefox|chromium)$" instance="^(Navigator|chromium)$"] $ws3
 set $ws4 4 
-set $ws5 5 
-set $ws6 6 
+    assign [class="^Codeblocks$"] $ws4
+        for_window [instance="^codeblocks$"] floating enable
+        for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
+    assign [class="^[Qq]t[Cc]reator$"] $ws4
+set $ws5 5 
+    assign [class="^[Ee]macs"] $ws5
+    assign [class="^[Tt]ex[Mm]aker"] $ws5
+set $ws6 6 
+    assign [class="^[Bb]lender"] $ws6
+    assign [class="^[Gg]imp"] $ws6
+    assign [class="^[Ii]nkscape"] $ws6
+    assign [class="^[Ss]cribus"] $ws6
 set $ws7 7 
+    workspace "$ws7" output $racked_screen
+    assign [class="^qemu-system-.*$"] $ws7
+        for_window [class="^qemu-system-.*$"] floating disable border none
 set $ws8 8 
+    assign [class="^[Nn]autilus$"] $ws8
 set $ws9 9 
+    assign [class="^Hexchat$"] $ws9
 set $ws10 10 
+    workspace "$ws10" output $racked_screen
 set $ws11 11 
 set $ws12 12 
 set $ws13 13 
@@ -28,12 +50,14 @@ set $ws14 14 
 set $ws15 15 
 set $ws16 16 
 
-workspace "$ws7" output $racked_screen
-workspace "$ws10" output $racked_screen
+workspace_auto_back_and_forth yes
 
-set $desktop_screen LVDS1
-set $HDMI HDMI
-set $VGA VGA
+for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
+for_window [class="^[Xx][Cc]lock$" instance="^[Xx][Cc]lock$"] floating enable border none
+for_window [class="^[Dd]isplay$" instance="^[Dd]isplay$"] floating enable border none
+
+new_float 1pixel
+hide_edge_borders both
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -225,20 +249,3 @@ bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
 bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
 
-assign [class="^Icedove$"] $ws2
-assign [class="^(Iceweasel|Firefox|chromium)$" instance="^(Navigator|chromium)$"] $ws3
-assign [class="^Codeblocks$"] $ws4
-for_window [instance="^codeblocks$"] floating enable
-for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
-assign [class="^Hexchat$"] $ws9
-assign [class="^qemu-system-.*$"] $ws7
-for_window [class="^qemu-system-.*$"] floating disable border none
-
-for_window [class="^Screenkey$" instance="^screenkey$"] floating enable border none
-for_window [class="^[Xx][Cc]lock$" instance="^[Xx][Cc]lock$"] floating enable border none
-for_window [class="^[Dd]isplay$" instance="^[Dd]isplay$"] floating enable border none
-
-workspace_auto_back_and_forth yes
-
-new_float 1pixel
-hide_edge_borders both
