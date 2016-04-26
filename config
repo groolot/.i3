@@ -253,3 +253,4 @@ bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
 bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
 bindsym $mod+w exec /usr/bin/luakit
+bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && qjackctl
