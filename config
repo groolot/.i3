@@ -35,6 +35,7 @@ set $ws6 6 
     assign [class="^[Ii]nkscape"] $ws6
     assign [class="^[Ss]cribus"] $ws6
     assign [class="^[Dd]ia"] $ws6
+    assign [class="^[Dd]igi[Kk]am"] $ws6
 set $ws7 7 
     workspace "$ws7" output $racked_screen
     assign [class="^qemu-system-.*$"] $ws7
