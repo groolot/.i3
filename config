@@ -19,12 +19,13 @@ set $ws1 1 
 set $ws2 2 
     assign [class="^Icedove$"] $ws2
 set $ws3 3 
-    assign [class="^(Iceweasel|Firefox|chromium)$" instance="^(Navigator|chromium)$"] $ws3
+    assign [class="^(Iceweasel|Firefox|chromium|luakit)$" instance="^(Navigator|chromium|luakit)$"] $ws3
 set $ws4 4 
     assign [class="^Codeblocks$"] $ws4
         for_window [instance="^codeblocks$"] floating enable
         for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
     assign [class="^[Qq]t[Cc]reator$"] $ws4
+    assign [class="^[Cc]odelite$"] $ws4
 set $ws5 5 
     assign [class="^[Ee]macs"] $ws5
     assign [class="^[Tt]ex[Mm]aker"] $ws5
@@ -33,6 +34,7 @@ set $ws6 6 
     assign [class="^[Gg]imp"] $ws6
     assign [class="^[Ii]nkscape"] $ws6
     assign [class="^[Ss]cribus"] $ws6
+    assign [class="^[Dd]ia-normal"] $ws6
 set $ws7 7 
     workspace "$ws7" output $racked_screen
     assign [class="^qemu-system-.*$"] $ws7
@@ -230,21 +232,22 @@ bar {
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #2f343a #900000 #ffffff
     }
-    font pango:Sans, Awesome 10
+    font pango:monospace, Awesome 10
     status_command i3status
     mode hide
 }
 
 exec --no-startup-id xsetroot -solid "#000000"
+exec --no-startup-id xrandr --output LVDS-1 --dpi 72
 
-bindsym Control+Mod1+l exec i3-msg workspace $ws1 && i3lock --color=111111 --nofork
+bindsym Control+Mod1+l exec i3-msg workspace $ws1 && i3lock --color=111111 --dpms --nofork
 bindsym $mod+b border toggle
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ -0.1
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +0.1
 bindsym XF86Display exec arandr
 bindsym Print exec /usr/local/bin/maim -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
-bindsym $mod+Shift+x exec /usr/bin/xset b off s off
+bindsym $mod+Shift+x exec /usr/bin/xset b off s off -dpms
 bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
 bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
