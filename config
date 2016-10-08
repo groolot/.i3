@@ -252,4 +252,4 @@ bindsym $mod+Shift+x exec /usr/bin/xset b off s off -dpms
 bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
 bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
-
+bindsym $mod+w exec /usr/bin/luakit
