@@ -45,6 +45,7 @@ set $ws9 9 
     assign [class="^Hexchat$"] $ws9
 set $ws10 10 
     workspace "$ws10" output $racked_screen
+    assign [class="^[Kk]odi"] $ws10
 set $ws11 11 
 set $ws12 12 
 set $ws13 13 
