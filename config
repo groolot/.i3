@@ -11,9 +11,9 @@
 
 set $mod Mod4
 
-set $desktop_screen HDMI-0
-set $racked_screen DVI-I-1
-set $projection_screen DP-0
+set $desktop_screen LVDS-1
+set $racked_screen VGA-1
+set $projection_screen HDMI-1
 
 set $ws1 1 
 set $ws2 2 
