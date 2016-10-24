@@ -27,7 +27,6 @@ set $ws4 4 
     assign [class="^[Qq]t[Cc]reator$"] $ws4
     assign [class="^[Cc]odelite$"] $ws4
 set $ws5 5 
-    assign [class="^[Ee]macs"] $ws5
     assign [class="^[Tt]ex[Mm]aker"] $ws5
 set $ws6 6 
     assign [class="^[Bb]lender"] $ws6
