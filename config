@@ -94,9 +94,9 @@ bindsym $mod+Shift+oe move scratchpad
 bindsym $mod+oe scratchpad show
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
 bindsym $mod+m focus right
 
 # alternatively, you can use the cursor keys:
@@ -106,9 +106,9 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+#bindsym $mod+Shift+l move up
 bindsym $mod+Shift+m move right
 
 # alternatively, you can use the cursor keys:
