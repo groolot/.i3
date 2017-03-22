@@ -17,7 +17,7 @@ set $projection_screen HDMI-1
 
 set $ws1 1 
 set $ws2 2 
-    assign [class="^Icedove$"] $ws2
+    assign [class="^(Icedove|Mail|Thunderbird)$"] $ws2
 set $ws3 3 
     assign [class="^(Iceweasel|Firefox|chromium|luakit)$" instance="^(Navigator|chromium|luakit)$"] $ws3
 set $ws4 4 
