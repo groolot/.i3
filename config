@@ -19,7 +19,7 @@ set $ws1 1 
 set $ws2 2 
     assign [class="^(Icedove|Mail|Thunderbird)$"] $ws2
 set $ws3 3 
-    assign [class="^(Iceweasel|Firefox|chromium|luakit)$" instance="^(Navigator|chromium|luakit)$"] $ws3
+    assign [class="^(Iceweasel|Firefox|chromium|[lL]uakit|(x|X|gnome)-www-browser)$" instance="^(Navigator|chromium|[lL]uakit|(x|X|gnome)-www-browser)$"] $ws3
 set $ws4 4 
     assign [class="^Codeblocks$"] $ws4
         for_window [instance="^codeblocks$"] floating enable
@@ -253,5 +253,5 @@ bindsym $mod+Shift+x exec /usr/bin/xset b off s off -dpms
 bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
 bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
-bindsym $mod+w exec /usr/bin/luakit
+bindsym $mod+w exec /usr/local/bin/luakit
 bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && qjackctl
