@@ -63,6 +63,7 @@ for_window [title="^.*GEM.*$"] floating enable border normal 1
 
 new_float 1pixel
 hide_edge_borders both
+bindsym $mod+b border toggle
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -259,7 +260,6 @@ exec --no-startup-id pulseaudio --start
 exec xmodmap -e "keycode 78 = Multi_key"
 
 bindsym Control+Mod1+l exec i3lock --color=111111 --dpms --nofork
-bindsym $mod+b border toggle
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ -0.1
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +0.1
