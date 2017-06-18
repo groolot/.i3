@@ -263,9 +263,26 @@ bindsym Control+Mod1+l exec i3lock --color=111111 --dpms --nofork
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ -0.1
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +0.1
-bindsym XF86Display exec arandr
-bindsym Print exec /usr/local/bin/maim -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off -dpms
+
+# XRandR bindings
+set $mode_xrandr "(l)VDS-1, (h)DMI-1, (v)GA-1, (a)randr"
+mode $mode_xrandr {
+     bindsym l exec xrandr --output $desktop_screen --auto --output $racked_screen --off --output $projection_screen --off, mode "default"
+     bindsym v exec xrandr --output $desktop_screen --off --output $racked_screen --auto --output $projection_screen --off, mode "default"
+     bindsym h exec xrandr --output $desktop_screen --off --output $racked_screen --off --output $projection_screen --auto, mode "default"
+     bindsym a exec arandr, mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+bindsym $mod+x mode $mode_xrandr
+bindsym XF86Display mode $mode_xrandr
+
+# Print screen key bindingB
+bindsym Print exec /usr/local/bin/maim -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
+
+# Screenkey
 bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym $mod+n exec /usr/bin/nautilus
 bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
