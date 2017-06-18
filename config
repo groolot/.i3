@@ -94,7 +94,7 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+oe move scratchpad
 
-# Show the first scratchpad window
+# Show the next scratchpad window
 bindsym $mod+oe scratchpad show
 
 # change focus
@@ -102,6 +102,7 @@ bindsym $mod+oe scratchpad show
 #bindsym $mod+k focus down
 #bindsym $mod+l focus up
 bindsym $mod+m focus right
+# keep it because of the Lenovo E420s keyboard issue that do not catch '$mod+Right'
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -114,6 +115,7 @@ bindsym $mod+Right focus right
 #bindsym $mod+Shift+k move down
 #bindsym $mod+Shift+l move up
 bindsym $mod+Shift+m move right
+# keep it because of the Lenovo E420s keyboard issue that do not catch '$mod+Right'
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -279,12 +281,22 @@ mode $mode_xrandr {
 bindsym $mod+x mode $mode_xrandr
 bindsym XF86Display mode $mode_xrandr
 
-# Print screen key bindingB
+# Print screen key binding
 bindsym Print exec /usr/local/bin/maim -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
 
 # Screenkey
 bindsym $mod+Shift+s exec /usr/local/bin/screenkey
-bindsym $mod+n exec /usr/bin/nautilus
-bindsym Control+$mod+Mod1+c exec /usr/bin/xclock -render
-bindsym $mod+w exec /usr/bin/luakit
+bindsym Control+$mod+Shift+s exec pkill -9 screenkey
+
+# GUI file manager
+bindsym $mod+Shift+n exec /usr/bin/nautilus
+
+# XClock
+bindsym $mod+$alt+c exec /usr/bin/xclock -render
+bindsym Control+$mod+$alt+c exec pkill -9 xclock
+
+# Luakit
+bindsym $mod+Shift+w exec luakit
+
+# Qjackctl with i3 layout
 bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && qjackctl
