@@ -227,7 +227,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 # Appearance
@@ -265,7 +264,7 @@ exec --no-startup-id unclutter -keystroke -jitter 5
 # Compose key as ScroolLock
 exec xmodmap -e "keycode 78 = Multi_key"
 
-bindsym Control+Mod1+l exec i3lock --color=111111 --dpms --nofork
+bindsym Control+$alt+l exec i3lock --color=111111 --dpms --nofork
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ -0.1
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +0.1
