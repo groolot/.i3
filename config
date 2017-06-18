@@ -81,6 +81,7 @@ bindsym $mod+Return exec gnome-terminal --hide-menubar
 
 # kill focused window
 bindsym $mod+Shift+a kill
+bindsym --release Control+button2 kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
