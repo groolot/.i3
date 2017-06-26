@@ -12,8 +12,8 @@ set $alt Mod1
 set $mod Mod4
 
 set $desktop_screen LVDS-1
-set $racked_screen VGA-1
-set $projection_screen HDMI-1
+set $vga_screen VGA-1
+set $hdmi_screen HDMI-1
 
 set $ws1 1 
 set $ws2 2 
@@ -36,7 +36,7 @@ set $ws6 6 
     assign [class="^[Dd]ia"] $ws6
     assign [class="^[Dd]igi[Kk]am"] $ws6
 set $ws7 7 
-    workspace "$ws7" output $racked_screen
+    workspace "$ws7" output $vga_screen
     assign [class="^qemu-system-.*$"] $ws7
         for_window [class="^qemu-system-.*$"] floating disable border none
 set $ws8 8 
@@ -44,7 +44,7 @@ set $ws8 8 
 set $ws9 9 
     assign [class="^Hexchat$"] $ws9
 set $ws10 10 
-    workspace "$ws10" output $racked_screen
+    workspace "$ws10" output $vga_screen
     assign [class="^[Kk]odi"] $ws10
 set $ws11 11 
 set $ws12 12 
@@ -271,11 +271,12 @@ bindsym XF86AudioRaiseVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SIN
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off -dpms
 
 # XRandR bindings
-set $mode_xrandr "(l)VDS-1, (h)DMI-1, (v)GA-1, (a)randr"
+set $mode_xrandr "(l)VDS-1, (h)DMI-1, (v)GA-1, (c)opy, (a)randr"
 mode $mode_xrandr {
-     bindsym l exec xrandr --output $desktop_screen --auto --output $racked_screen --off --output $projection_screen --off, mode "default"
-     bindsym v exec xrandr --output $desktop_screen --off --output $racked_screen --auto --output $projection_screen --off, mode "default"
-     bindsym h exec xrandr --output $desktop_screen --off --output $racked_screen --off --output $projection_screen --auto, mode "default"
+     bindsym l exec xrandr --output $desktop_screen --auto --output $vga_screen --off --output $hdmi_screen --off, mode "default"
+     bindsym v exec xrandr --output $desktop_screen --off --output $vga_screen --auto --output $hdmi_screen --off, mode "default"
+     bindsym h exec xrandr --output $desktop_screen --off --output $vga_screen --off --output $hdmi_screen --auto, mode "default"
+     bindsym c exec xrandr --output $desktop_screen --auto --output $vga_screen --auto --same-as $desktop_screen --output $hdmi_screen --off, mode "default"
      bindsym a exec arandr, mode "default"
 
      bindsym Return mode "default"
