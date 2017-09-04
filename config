@@ -190,12 +190,14 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-set $mode_system "(l)ock, (e)xit, (r)eboot, (h)alt"
+set $mode_system "(l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (p)oweroff"
 mode $mode_system {
      bindsym l exec --no-startup-id i3lock --color=111111 --dpms --nofork, mode "default"
      bindsym e exit, mode "default"
+     bindsym s exec --no-startup-id systemctl suspend, mode "default"
+     bindsym h exec --no-startup-id systemctl hibernate, mode "default"
      bindsym r exec --no-startup-id systemctl reboot, mode "default"
-     bindsym h exec --no-startup-id systemctl poweroff, mode "default"
+     bindsym p exec --no-startup-id systemctl poweroff, mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
