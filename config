@@ -62,6 +62,7 @@ for_window [class="^[Xx][Cc]lock$"] floating enable border none
 for_window [class="^[Dd]isplay$"] floating enable border none
 for_window [class="^([Ee]vince|[Dd]evhelp|[Nn]autilus)$"] floating disable border pixel 3
 for_window [title="^.*GEM.*$"] floating enable border normal 1
+for_window [class="Pavucontrol"] floating enable
 
 new_float 1pixel
 hide_edge_borders both
