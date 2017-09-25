@@ -193,9 +193,9 @@ bindsym $mod+Shift+ugrave move container to workspace $ws15
 bindsym $mod+Shift+asterisk move container to workspace $ws16
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+Home reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+End restart
 
 set $mode_system "(l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (p)oweroff"
 mode $mode_system {
