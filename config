@@ -51,6 +51,7 @@ set $ws12 12 
 set $ws13 13 
 set $ws14 14 
 set $ws15 15 
+    assign [class="^xfreerdp$"] $ws15
 set $ws16 16 
 
 # Go to last workspace
