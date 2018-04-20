@@ -317,7 +317,7 @@ bindsym $mod+Shift+s exec /usr/local/bin/screenkey
 bindsym Control+$mod+Shift+s exec pkill -9 screenkey
 
 # GUI file manager
-bindsym $mod+Shift+n exec /usr/bin/nautilus
+bindsym $mod+Shift+n exec /usr/bin/pcmanfm
 
 # XClock
 bindsym $mod+$alt+c exec /usr/bin/xclock -render
