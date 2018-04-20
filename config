@@ -330,4 +330,5 @@ bindsym $mod+Shift+w exec luakit
 bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && qjackctl
 
 # Au démarrage
+exec hexchat
 exec akregator
