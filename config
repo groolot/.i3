@@ -280,19 +280,32 @@ bindsym XF86AudioRaiseVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SIN
 bindsym $mod+Shift+x exec /usr/bin/xset b off s off -dpms
 
 # XRandR bindings
-set $mode_xrandr "(l)VDS-1, (h)DMI-1, (v)GA-1, (c)opy, (a)randr"
+set $mode_xrandr "(l)VDS-1, (h)DMI-1, (v)GA-1, (c)opy, (e)xtend, (a)randr"
 mode $mode_xrandr {
      bindsym l exec xrandr --output $desktop_screen --auto --output $vga_screen --off --output $hdmi_screen --off, mode "default"
-     bindsym v exec xrandr --output $desktop_screen --off --output $vga_screen --auto --output $hdmi_screen --off, mode "default"
      bindsym h exec xrandr --output $desktop_screen --off --output $vga_screen --off --output $hdmi_screen --auto, mode "default"
+     bindsym v exec xrandr --output $desktop_screen --off --output $vga_screen --auto --output $hdmi_screen --off, mode "default"
+     bindsym e mode $mode_xrandr_extend
      bindsym c exec xrandr --output $desktop_screen --auto --output $vga_screen --auto --same-as $desktop_screen --output $hdmi_screen --off, mode "default"
      bindsym a exec arandr, mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
 }
+set $mode_xrandr_extend "(h)DMI-1, (v)GA-1"
+mode $mode_xrandr_extend {
+     bindsym h exec xrandr --output $desktop_screen --auto --output $vga_screen --off --output $hdmi_screen --auto --right-of $desktop_screen, mode "default"
+     bindsym v exec xrandr --output $desktop_screen --auto --output $vga_screen --auto --right-of $desktop_screen --output $hdmi_screen --off, mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
 bindsym $mod+x mode $mode_xrandr
 bindsym XF86Display mode $mode_xrandr
+bindsym Control+$mod+$alt+Up exec xrandr --output $hdmi_screen --rotate normal
+bindsym Control+$mod+$alt+Right exec xrandr --output $hdmi_screen --rotate right
+bindsym Control+$mod+$alt+Left exec xrandr --output $hdmi_screen --rotate left
+bindsym Control+$mod+$alt+Down exec xrandr --output $hdmi_screen --rotate inverted
 
 # Print screen key binding
 bindsym Print exec /usr/local/bin/maim -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
