@@ -37,8 +37,8 @@ set $ws6 6 
     assign [class="^[Dd]igi[Kk]am"] $ws6
 set $ws7 7 
     workspace "$ws7" output $vga_screen
-    assign [class="^qemu-system-.*$"] $ws7
-        for_window [class="^qemu-system-.*$"] floating disable border none
+    assign [class="^[Qq]emu.*$"] $ws7
+        for_window [class="^[Qq]emu.*$"] floating disable border none
 set $ws8 8 
     assign [class="^[Nn]autilus$"] $ws8
 set $ws9 9 
@@ -63,6 +63,7 @@ for_window [class="^[Xx][Cc]lock$"] floating enable border none
 for_window [class="^[Dd]isplay$"] floating enable border none
 for_window [class="^([Ee]vince|[Dd]evhelp|[Nn]autilus)$"] floating disable border pixel 3
 for_window [title="^.*GEM.*$"] floating enable border normal 1
+for_window [class="Audacity"] border normal 1
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Thunderbird" instance="Calendar"] floating enable
 
@@ -265,15 +266,6 @@ bar {
     mode hide
 }
 
-exec --no-startup-id xsetroot -solid "#000000"
-exec --no-startup-id xrandr --output LVDS-1 --dpi 72
-exec --no-startup-id pulseaudio --start
-
-# Hide mouse on time lapse
-exec --no-startup-id unclutter -keystroke -jitter 5
-
-# Compose key as ScroolLock
-exec xmodmap -e "keycode 78 = Multi_key"
 
 bindsym Control+$alt+l exec i3lock --color=111111 --dpms --nofork
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -330,5 +322,12 @@ bindsym $mod+Shift+w exec luakit
 bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && qjackctl
 
 # Au démarrage
-exec hexchat
-exec akregator
+exec --no-startup-id xsetroot -solid "#000000"
+exec --no-startup-id xrandr --output LVDS-1 --dpi 72
+exec --no-startup-id pulseaudio --start
+
+# Hide mouse on time lapse
+exec --no-startup-id unclutter -keystroke -jitter 5
+
+# Compose key as ScroolLock
+exec xmodmap -e "keycode 78 = Multi_key"
