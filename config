@@ -19,7 +19,7 @@ set $ws1 1 
 set $ws2 2 
     assign [class="^(akregator|Icedove|Mail|Thunderbird)$"] $ws2
 set $ws3 3 
-    assign [class="^(Iceweasel|Firefox.*|chromium|[lL]uakit|(x|X|gnome)-www-browser)$" instance="^(Navigator|chromium|[lL]uakit|(x|X|gnome)-www-browser)$"] $ws3
+    assign [class="^(Iceweasel|Firefox.*|chromium|[lL]uakit|(x|X|gnome)-www-browser|[zZ]otero)$" instance="^(Navigator|chromium|[lL]uakit|(x|X|gnome)-www-browser)$"] $ws3
 set $ws4 4 
     assign [class="^Codeblocks$"] $ws4
         for_window [instance="^codeblocks$"] floating enable
@@ -331,3 +331,6 @@ exec --no-startup-id unclutter -keystroke -jitter 5
 
 # Compose key as ScroolLock
 exec xmodmap -e "keycode 78 = Multi_key"
+
+# Launch Zotero
+exec --no-startup-id /usr/local/bin/zotero
