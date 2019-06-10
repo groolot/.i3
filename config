@@ -4,10 +4,10 @@
 set $alt Mod1
 set $mod Mod4
 
-set $laptop eDP-1
-set $hdmi HDMI-1
-set $hdmi2 HDMI-2
-set $displayport DP-1
+set $laptop eDP1
+set $hdmi HDMI1
+set $hdmi2 HDMI2
+set $displayport DP1
 
 set $ws1 1 
 set $ws2 2 
@@ -30,7 +30,7 @@ set $ws6 6 
     assign [class="^[Dd]ia"] $ws6
     assign [class="^[Dd]igi[Kk]am"] $ws6
 set $ws7 7 
-    workspace "$ws7" output $vga_screen
+    workspace "$ws7" output $hdmi2
     assign [class="^[Qq]emu.*$"] $ws7
         for_window [class="^[Qq]emu.*$"] floating disable border none
 set $ws8 8 
@@ -38,7 +38,7 @@ set $ws8 8 
 set $ws9 9 
     assign [class="^Hexchat$"] $ws9
 set $ws10 10 
-    workspace "$ws10" output $vga_screen
+    workspace "$ws10" output $hdmi2
     assign [class="^[Kk]odi"] $ws10
 set $ws11 11 
 set $ws12 12 
@@ -79,10 +79,11 @@ floating_maximum_size 1280 x 900
 font pango:monospace, FontAwesome 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $alt
+floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -176,7 +177,7 @@ bindsym $mod+Shift+ugrave move container to workspace $ws15
 bindsym $mod+Shift+asterisk move container to workspace $ws16
 
 # reload the configuration file
-bindsym $mod+Shift+Home reload
+bindsym $mod+Shift+Home reload; exec notify-send -t 1500 "i3 reloaded!"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+End restart
 
@@ -271,13 +272,13 @@ bindsym Control+$mod+$alt+Down exec xrandr --output $hdmi2 --rotate inverted
 bindsym $mod+p mode $mode_xrandr
 
 bindsym Control+$alt+l exec i3lock --color=000000 --dpms --nofork --show-failed-attempts --ignore-empty-password
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioLowerVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ -0.1
-bindsym XF86AudioRaiseVolume exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +0.1
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10; exec notify-send -t 500 "Moins lumineux"
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10; exec notify-send -t 500 "Plus lumineux"
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle && notify-send -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -0.1; exec notify-send -t 500 "Moins fort"
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +0.1; exec notify-send -t 500 "Plus fort"
 
-bindsym $mod+Shift+x exec /usr/bin/xset b off s off -dpms
+bindsym $mod+Shift+x exec /usr/bin/xset b on s on +dpms
 
 # Print screen key binding
 bindsym Print exec maim --hidecursor -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
@@ -294,22 +295,26 @@ bindsym $mod+Shift+n exec pcmanfm --no-desktop
 bindsym $mod+$alt+c exec xclock -render
 bindsym Control+$mod+$alt+c exec pkill -9 xclock
 
-# Luakit
-bindsym $mod+Shift+w exec luakit
+# Web browser
+bindsym $mod+Shift+w exec firefox-esr
 
 # Qjackctl with i3 layout
 bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && qjackctl
 
 # Au démarrage
 exec --no-startup-id xsetroot -solid "#000000"
+exec --no-startup-id /usr/bin/xset b off s off -dpms
 #exec --no-startup-id xrandr --output LVDS-1 --dpi 72
 #exec --no-startup-id pulseaudio --start
 
-# Hide mouse on time lapse
-exec --no-startup-id unclutter -keystroke -jitter 5 -root
+# Hide mouse on time lapse, see /etc/default/unclutter if system widely spreaded
+#exec --no-startup-id unclutter -noevents -keystroke -jitter 5 -root
 
 # Compose key as ScroolLock
 #exec xmodmap -e "keycode 78 = Multi_key"
 
 # Launch Zotero
 #exec --no-startup-id /usr/local/bin/zotero
+
+# GPG et SSH
+exec --no-startup-id ssh-agent -t 1d
