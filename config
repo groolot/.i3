@@ -295,7 +295,7 @@ bindsym $mod+$alt+c exec xclock -render
 bindsym Control+$mod+$alt+c exec pkill -9 xclock
 
 # Web browser
-bindsym $mod+Shift+w exec firefox-esr
+bindsym $mod+Shift+w exec --no-startup-id ~/.local/bin/zotero, exec firefox-esr
 
 # Qjackctl with i3 layout
 bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && qjackctl
