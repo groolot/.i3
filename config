@@ -269,7 +269,6 @@ bindsym Control+$mod+$alt+Up exec xrandr --output $hdmi2 --rotate normal
 bindsym Control+$mod+$alt+Right exec xrandr --output $hdmi2 --rotate right
 bindsym Control+$mod+$alt+Left exec xrandr --output $hdmi2 --rotate left
 bindsym Control+$mod+$alt+Down exec xrandr --output $hdmi2 --rotate inverted
-bindsym $mod+p mode $mode_xrandr
 
 bindsym Control+$alt+l exec i3lock --color=000000 --dpms --nofork --show-failed-attempts --ignore-empty-password
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10; exec notify-send -t 500 "Moins lumineux"
