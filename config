@@ -304,19 +304,9 @@ bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && q
 exec --no-startup-id xsetroot -solid "#000000"
 exec --no-startup-id /usr/bin/xset b off s off -dpms
 #exec --no-startup-id xrandr --output LVDS-1 --dpi 72
-#exec --no-startup-id pulseaudio --start
-
-# Hide mouse on time lapse, see /etc/default/unclutter if system widely spreaded
-#exec --no-startup-id unclutter -noevents -keystroke -jitter 5 -root
 
 # Compose key as ScroolLock
 #exec xmodmap -e "keycode 78 = Multi_key"
-
-# Launch Zotero
-#exec --no-startup-id /usr/local/bin/zotero
-
-# GPG et SSH
-exec --no-startup-id ssh-agent -t 1d
 
 # Linux cpupower control
 set $cpupower_powersave "sudo cpupower frequency-set --governor powersave"
