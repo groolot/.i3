@@ -318,3 +318,29 @@ exec --no-startup-id /usr/bin/xset b off s off -dpms
 
 # GPG et SSH
 exec --no-startup-id ssh-agent -t 1d
+
+# Linux cpupower control
+set $cpupower_powersave "sudo cpupower frequency-set --governor powersave"
+set $cpupower_performance "sudo cpupower frequency-set --governor performance"
+set $mode_cpupower "(p)erformance, power(s)ave"
+mode $mode_cpupower {
+     bindsym p exec $cpupower_performance, mode "default"
+     bindsym s exec $cpupower_powersave, mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+bindsym $mod+c mode $mode_cpupower
+
+# LADISH
+set $mode_ladish "(e)xit ladish, (i)n situ, (h)ypoglycémie, (r)hizome"
+mode $mode_ladish {
+     bindsym e exec ladish_control exit, exec $cpupower_powersave, mode "default"
+     bindsym i exec $cpupower_performance, exec ladish_control sload in-situ, mode "default"
+     bindsym h exec $cpupower_performance, exec ladish_control sload hypoglycemie, mode "default"
+     bindsym r exec $cpupower_performance, exec ladish_control sload rhizome, mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+bindsym $mod+l mode $mode_ladish
