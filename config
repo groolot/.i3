@@ -318,8 +318,8 @@ exec --no-startup-id /usr/bin/xset b off s off -dpms
 #exec xmodmap -e "keycode 78 = Multi_key"
 
 # Linux cpupower control
-set $cpupower_powersave "sudo cpupower frequency-set --governor powersave && exec pkill -SIGRTMIN+13 i3blocks"
-set $cpupower_performance "sudo cpupower frequency-set --governor performance && exec pkill -SIGRTMIN+13 i3blocks"
+set $cpupower_powersave "sudo cpupower frequency-set --governor powersave && i3-msg bar mode hide && pkill -SIGRTMIN+13 i3blocks"
+set $cpupower_performance "sudo cpupower frequency-set --governor performance && i3-msg bar mode dock && pkill -SIGRTMIN+13 i3blocks"
 set $mode_cpupower "(p)erformance, power(s)ave"
 mode $mode_cpupower {
      bindsym p exec $cpupower_performance, mode "default"
