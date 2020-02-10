@@ -271,6 +271,9 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10; exec notify-send -t 500 "Pl
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec notify-send -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -1%; exec notify-send -t 500 "Moins fort"; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +1%; exec notify-send -t 500 "Plus fort"; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioNext exec cmus-remote --next
+bindsym XF86AudioPrev exec cmus-remote --prev
+bindsym XF86AudioPlay exec cmus-remote --pause
 
 bindsym $mod+Shift+x exec /usr/bin/xset b on s on +dpms
 
