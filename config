@@ -235,6 +235,17 @@ bar {
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock exec pkill -SIGRTMIN+11 i3blocks
 
+set $mode_bar "(d)ock, (h)ide, (i)nvisible"
+mode $mode_bar {
+     bindsym d bar mode dock, mode "default"
+     bindsym h bar mode hide, mode "default"
+     bindsym i bar mode invisible, mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+bindsym Ctrl+$mod+$alt+h mode $mode_bar
+bindsym $mod+$alt+h bar mode toggle
 
 # XRandR bindings
 set $mode_xrandr "(l)aptop, (h)DMI-2, HDM(i)-1, (d)P-1, (c)opy, e(x)tend, (a)randr"
