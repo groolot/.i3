@@ -226,11 +226,19 @@ client.focused_inactive #111111 #3F6700 #ffffff #484e50
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  id status-bar
+  id primary-status-bar
   status_command i3blocks
   mode hide
   position bottom
   output primary
+}
+bar {
+  id secondary-status-bar
+  mode hide
+  position bottom
+  output $hdmi
+  output $hdmi2
+  output $displayport
 }
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock exec pkill -SIGRTMIN+11 i3blocks
@@ -250,22 +258,22 @@ bindsym $mod+$alt+h bar mode toggle
 # XRandR bindings
 set $mode_xrandr "(l)aptop, (h)DMI-2, HDM(i)-1, (d)P-1, (c)opy, e(x)tend, (a)randr"
 mode $mode_xrandr {
-     bindsym l exec xrandr --output $laptop --auto --output $hdmi --off --output $displayport --off --output $hdmi2 --off, mode "default"
-     bindsym h exec xrandr --output $laptop --off --output $hdmi --off --output $displayport --off --output $hdmi2 --auto, mode "default"
-     bindsym i exec xrandr --output $laptop --off --output $hdmi --auto --output $displayport --off --output $hdmi2 --off, mode "default"
-     bindsym d exec xrandr --output $laptop --off --output $hdmi --off --output $displayport --auto --output $hdmi2 --off, mode "default"
+     bindsym l exec xrandr --output $laptop --auto --primary --output $hdmi --off --output $displayport --off --output $hdmi2 --off, mode "default"
+     bindsym h exec xrandr --output $laptop --off --output $hdmi --off --output $displayport --off --output $hdmi2 --auto --primary, mode "default"
+     bindsym i exec xrandr --output $laptop --off --output $hdmi --auto --primary --output $displayport --off --output $hdmi2 --off, mode "default"
+     bindsym d exec xrandr --output $laptop --off --output $hdmi --off --output $displayport --auto --primary --output $hdmi2 --off, mode "default"
      bindsym x mode $mode_xrandr_extend
-     bindsym c exec xrandr --output $laptop --auto --output $hdmi2 --auto --same-as $laptop --output $hdmi --off --output $displayport --off, mode "default"
+     bindsym c exec xrandr --output $laptop --auto --primary --output $hdmi2 --auto --same-as $laptop --output $hdmi --off --output $displayport --off, mode "default"
      bindsym a exec arandr, mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
 }
-set $mode_xrandr_extend "(h)DMI-2, HDM(i)-1, (d)P-1"
+set $mode_xrandr_extend "laptop extended to: (h)DMI-2, HDM(i)-1, (d)P-1"
 mode $mode_xrandr_extend {
-     bindsym h exec xrandr --output $laptop --auto --output $hdmi2 --auto --right-of $laptop --output $displayport --off --output $hdmi --off, mode "default"
-     bindsym i exec xrandr --output $laptop --auto --output $hdmi --auto --right-of $laptop --output $displayport --off --output $hdmi2 --off, mode "default"
-     bindsym d exec xrandr --output $laptop --auto --output $displayport --auto --right-of $laptop --output $hdmi --off --output $hdmi2 --off, mode "default"
+     bindsym h exec xrandr --output $laptop --auto --primary --output $hdmi2 --auto --right-of $laptop --output $displayport --off --output $hdmi --off, mode "default"
+     bindsym i exec xrandr --output $laptop --auto --primary --output $hdmi --auto --right-of $laptop --output $displayport --off --output $hdmi2 --off, mode "default"
+     bindsym d exec xrandr --output $laptop --auto --primary --output $displayport --auto --right-of $laptop --output $hdmi --off --output $hdmi2 --off, mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
