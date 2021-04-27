@@ -4,10 +4,9 @@
 set $alt Mod1
 set $mod Mod4
 
-set $laptop eDP1
-set $hdmi HDMI1
-set $hdmi2 HDMI2
-set $displayport DP1
+set $laptop eDP-1
+set $hdmi HDMI-1
+set $displayport DP-1
 
 set $ws1 1 
 set $ws2 2 
@@ -55,7 +54,7 @@ bindsym $mod+Tab workspace back_and_forth
 for_window [class="^Screenkey$"] floating enable border none
 for_window [class="^[Xx][Cc]lock$"] floating enable border none
 for_window [class="^[Dd]isplay$"] floating enable border none
-for_window [class="^([Ee]vince|[Dd]evhelp|[Nn]autilus)$"] floating disable border pixel 3
+for_window [class="^([Zz]athura|[Ee]vince|[Dd]evhelp|[Nn]autilus)$"] floating disable border pixel 3
 for_window [title="^.*GEM.*$"] floating enable border normal 1
 for_window [class="Audacity"] border normal 1
 for_window [class="Pavucontrol"] floating enable
@@ -82,8 +81,7 @@ font pango:monospace, FontAwesome 8
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -226,19 +224,9 @@ client.focused_inactive #111111 #3F6700 #ffffff #484e50
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  id primary-status-bar
   status_command i3blocks
   mode hide
   position bottom
-  output primary
-}
-bar {
-  id secondary-status-bar
-  mode hide
-  position bottom
-  output $hdmi
-  output $hdmi2
-  output $displayport
 }
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock exec pkill -SIGRTMIN+11 i3blocks
@@ -256,43 +244,38 @@ bindsym Ctrl+$mod+$alt+h mode $mode_bar
 bindsym $mod+$alt+h bar mode toggle
 
 # XRandR bindings
-set $mode_xrandr "(l)aptop, (h)DMI-2, HDM(i)-1, (d)P-1, (c)opy, e(x)tend, (a)randr"
+set $mode_xrandr "(l)aptop, (h)DMI-1, (d)P-1, (c)opy, e(x)tend, (a)randr"
 mode $mode_xrandr {
-     bindsym l exec xrandr --output $laptop --auto --primary --output $hdmi --off --output $displayport --off --output $hdmi2 --off, mode "default"
-     bindsym h exec xrandr --output $laptop --off --output $hdmi --off --output $displayport --off --output $hdmi2 --auto --primary, mode "default"
-     bindsym i exec xrandr --output $laptop --off --output $hdmi --auto --primary --output $displayport --off --output $hdmi2 --off, mode "default"
-     bindsym d exec xrandr --output $laptop --off --output $hdmi --off --output $displayport --auto --primary --output $hdmi2 --off, mode "default"
+     bindsym l exec xrandr --output $laptop --auto --primary --output $hdmi --off            --output $displayport --off, mode "default"
+     bindsym h exec xrandr --output $laptop --off            --output $hdmi --auto --primary --output $displayport --off, mode "default"
+     bindsym d exec xrandr --output $laptop --off            --output $hdmi --off            --output $displayport --auto --primary, mode "default"
      bindsym x mode $mode_xrandr_extend
-     bindsym c exec xrandr --output $laptop --auto --primary --output $hdmi2 --auto --same-as $laptop --output $hdmi --off --output $displayport --off, mode "default"
+     bindsym c exec xrandr --output $laptop --auto --primary --output $hdmi --auto --same-as $laptop --output $displayport --off, mode "default"
      bindsym a exec arandr, mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
 }
-set $mode_xrandr_extend "laptop extended to: (h)DMI-2, HDM(i)-1, (d)P-1"
+set $mode_xrandr_extend "laptop extended to: (h)DMi-1, (d)P-1"
 mode $mode_xrandr_extend {
-     bindsym h exec xrandr --output $laptop --auto --primary --output $hdmi2 --auto --right-of $laptop --output $displayport --off --output $hdmi --off, mode "default"
-     bindsym i exec xrandr --output $laptop --auto --primary --output $hdmi --auto --right-of $laptop --output $displayport --off --output $hdmi2 --off, mode "default"
-     bindsym d exec xrandr --output $laptop --auto --primary --output $displayport --auto --right-of $laptop --output $hdmi --off --output $hdmi2 --off, mode "default"
+     bindsym h exec xrandr --output $laptop --auto --primary --output $hdmi --auto --right-of $laptop --output $displayport --off, mode "default"
+     bindsym d exec xrandr --output $laptop --auto --primary --output $hdmi --off                     --output $displayport --auto --right-of $laptop, mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
 }
 bindsym $mod+x mode $mode_xrandr
-bindsym Control+$mod+$alt+Up exec xrandr --output $hdmi2 --rotate normal
-bindsym Control+$mod+$alt+Right exec xrandr --output $hdmi2 --rotate right
-bindsym Control+$mod+$alt+Left exec xrandr --output $hdmi2 --rotate left
-bindsym Control+$mod+$alt+Down exec xrandr --output $hdmi2 --rotate inverted
+bindsym Control+$mod+$alt+Up exec xrandr --output $hdmi --rotate normal
+bindsym Control+$mod+$alt+Right exec xrandr --output $hdmi --rotate right
+bindsym Control+$mod+$alt+Left exec xrandr --output $hdmi --rotate left
+bindsym Control+$mod+$alt+Down exec xrandr --output $hdmi --rotate inverted
 
 bindsym Control+$alt+l exec i3lock --color=000000 --dpms --nofork --show-failed-attempts --ignore-empty-password
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10; exec notify-send -t 500 "Moins lumineux"
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10; exec notify-send -t 500 "Plus lumineux"
+bindsym XF86MonBrightnessDown exec brightnessctl -q -d '*' -c 'backlight' set 10%-; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86MonBrightnessUp exec exec brightnessctl -q -d '*' -c 'backlight' set +10%; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec notify-send -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"; exec pkill -SIGRTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -1%; exec notify-send -t 500 "Moins fort"; exec pkill -SIGRTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +1%; exec notify-send -t 500 "Plus fort"; exec pkill -SIGRTMIN+10 i3blocks
-bindsym XF86AudioNext exec cmus-remote --next
-bindsym XF86AudioPrev exec cmus-remote --prev
-bindsym XF86AudioPlay exec cmus-remote --pause
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -1%; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +1%; exec pkill -SIGRTMIN+10 i3blocks
 
 bindsym $mod+Shift+x exec /usr/bin/xset b on s on +dpms
 
@@ -301,31 +284,24 @@ bindsym Print exec maim --hidecursor -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M
 bindsym Control+Print exec maim --hidecursor ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
 
 # Screenkey
-bindsym $mod+Shift+s exec screenkey --no-detach --timeout 3 --position bottom --font-size small --key-mode composed --mods-mode emacs --vis-shift --font-color "#ffffff" --bg-color "#000000" --compr-cnt 2 --font "monospace bold"
+bindsym $mod+Shift+s exec screenkey --timeout 3 --position bottom --font-size small --key-mode composed --mods-mode emacs --vis-shift --font-color "#ffffff" --bg-color "#000000" --compr-cnt 2 --font "monospace bold"
 bindsym Control+$mod+Shift+s exec pkill -9 screenkey
 
 # GUI file manager
 bindsym $mod+Shift+n exec pcmanfm --no-desktop
 
-# XClock
-bindsym $mod+$alt+c exec xclock -render
-bindsym Control+$mod+$alt+c exec pkill -9 xclock
-
 # Web browser
 bindsym $mod+Shift+w exec --no-startup-id ~/.local/bin/zotero, exec firefox-esr
 
-# Qjackctl with i3 layout
-bindsym $mod+Shift+j exec i3-msg 'append_layout ~/.config/i3/qjackctl.json' && qjackctl
-
 # Au démarrage
+exec --no-startup-id dunst -verbosity crit
 exec --no-startup-id xsetroot -solid "#000000"
 exec --no-startup-id /usr/bin/xset b off s off -dpms
-#exec --no-startup-id xrandr --output LVDS-1 --dpi 72
-
-# Compose key as ScroolLock
-#exec xmodmap -e "keycode 78 = Multi_key"
 
 # Linux cpupower control
+# Ne pas oublier de modifier les permissions sudo pour les commandes cpupower
+# %sudo	ALL=(ALL:ALL) ALL, NOPASSWD: /usr/bin/cpupower frequency-set --governor powersave, /usr/bin/cpupower frequency-set --governor performance
+
 set $cpupower_powersave "sudo cpupower frequency-set --governor powersave && i3-msg bar mode hide && pkill -SIGRTMIN+13 i3blocks"
 set $cpupower_performance "sudo cpupower frequency-set --governor performance && i3-msg bar mode dock && pkill -SIGRTMIN+13 i3blocks"
 set $mode_cpupower "(p)erformance, power(s)ave"
