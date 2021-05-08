@@ -10,47 +10,40 @@ set $displayport DP-1
 
 set $ws1 1 
 set $ws2 2 
-    assign [class="^(akregator|Icedove|Mail|Thunderbird)$"] $ws2
 set $ws3 3 
-    assign [class="^(Iceweasel|Firefox.*|chromium|[lL]uakit|(x|X|gnome)-www-browser|[zZ]otero)$" instance="^(Navigator|chromium|[lL]uakit|(x|X|gnome)-www-browser)$"] $ws3
+    assign [class="^Firefox" instance="^(Firefox|Navigator)$"] $ws3
 set $ws4 4 
-    assign [class="^Codeblocks$"] $ws4
-        for_window [instance="^codeblocks$"] floating enable
-        for_window [instance="^codeblocks$" title="^.*Code::Blocks.*$"] floating disable
     assign [class="^[Qq]t[Cc]reator$"] $ws4
-    assign [class="^[Cc]odelite$"] $ws4
 set $ws5 5 
-    assign [class="^[Tt]ex[Mm]aker"] $ws5
+    assign [class="^([Tt]ex[Mm]aker|Devhelp)"] $ws5
 set $ws6 6 
     assign [class="^[Bb]lender"] $ws6
     assign [class="^[Gg]imp"] $ws6
     assign [class="^[Ii]nkscape"] $ws6
     assign [class="^[Ss]cribus"] $ws6
-    assign [class="^[Dd]ia"] $ws6
-    assign [class="^[Dd]igi[Kk]am"] $ws6
+    assign [class="^Dia"] $ws6
+    assign [class="^Shotwell"] $ws6
 set $ws7 7 
-    workspace "$ws7" output $hdmi2
-    assign [class="^[Qq]emu.*$"] $ws7
-        for_window [class="^[Qq]emu.*$"] floating disable border none
+    workspace "$ws7" output $hdmi
 set $ws8 8 
-    assign [class="^[Nn]autilus$"] $ws8
+    assign [class="^(dolphin|pcmanfm)$"] $ws8
 set $ws9 9 
     assign [class="^Hexchat$"] $ws9
 set $ws10 10 
-    workspace "$ws10" output $hdmi2
+    workspace "$ws10" output $hdmi
     assign [class="^[Kk]odi"] $ws10
 set $ws11 11 
 set $ws12 12 
 set $ws13 13 
 set $ws14 14 
 set $ws15 15 
-    assign [class="^xfreerdp$"] $ws15
 set $ws16 16 
 
 # Go to last workspace
 # workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
 
+for_window [window_type="splash"] floating enable border none
 for_window [class="^Screenkey$"] floating enable border none
 for_window [class="^[Xx][Cc]lock$"] floating enable border none
 for_window [class="^[Dd]isplay$"] floating enable border none
@@ -58,9 +51,9 @@ for_window [class="^([Zz]athura|[Ee]vince|[Dd]evhelp|[Nn]autilus)$"] floating di
 for_window [title="^.*GEM.*$"] floating enable border normal 1
 for_window [class="Audacity"] border normal 1
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Thunderbird" instance="Calendar"] floating enable
 
 new_float 1pixel
+default_floating_border normal
 hide_edge_borders both
 bindsym $mod+b border toggle
 
@@ -175,9 +168,9 @@ bindsym $mod+Shift+ugrave move container to workspace $ws15
 bindsym $mod+Shift+asterisk move container to workspace $ws16
 
 # reload the configuration file
-bindsym $mod+Shift+Home reload; exec notify-send -t 1500 "i3 reloaded!"
+bindsym $mod+Shift+Prior reload, exec dunstify -t 1500 "i3 reloaded!"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+End restart
+bindsym $mod+Shift+Next restart
 
 set $mode_system "(l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (p)oweroff "
 mode $mode_system {
@@ -225,7 +218,7 @@ client.focused_inactive #111111 #3F6700 #ffffff #484e50
 # finds out, if available)
 bar {
   status_command i3blocks
-  mode hide
+  mode dock
   position bottom
 }
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
@@ -271,13 +264,17 @@ bindsym Control+$mod+$alt+Left exec xrandr --output $hdmi --rotate left
 bindsym Control+$mod+$alt+Down exec xrandr --output $hdmi --rotate inverted
 
 bindsym Control+$alt+l exec i3lock --color=000000 --dpms --nofork --show-failed-attempts --ignore-empty-password
-bindsym XF86MonBrightnessDown exec brightnessctl -q -d '*' -c 'backlight' set 10%-; exec pkill -SIGRTMIN+10 i3blocks
-bindsym XF86MonBrightnessUp exec exec brightnessctl -q -d '*' -c 'backlight' set +10%; exec pkill -SIGRTMIN+10 i3blocks
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec notify-send -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"; exec pkill -SIGRTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -1%; exec pkill -SIGRTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +1%; exec pkill -SIGRTMIN+10 i3blocks
 
-bindsym $mod+Shift+x exec /usr/bin/xset b on s on +dpms
+bindsym XF86MonBrightnessDown exec brightnessctl -q -d '*' -c 'backlight' set 10%-; exec pkill -SIGRTMIN+10 i3blocks
+bindsym Control+XF86MonBrightnessDown exec brightnessctl -q -d '*' -c 'backlight' set 1%-; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86MonBrightnessUp exec exec brightnessctl -q -d '*' -c 'backlight' set +10%; exec pkill -SIGRTMIN+10 i3blocks
+bindsym Control+XF86MonBrightnessUp exec exec brightnessctl -q -d '*' -c 'backlight' set +1%; exec pkill -SIGRTMIN+10 i3blocks
+
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec dunstify -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -10%; exec pkill -SIGRTMIN+10 i3blocks
+bindsym Control+XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -1%; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +10%; exec pkill -SIGRTMIN+10 i3blocks
+bindsym Control+XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +1%; exec pkill -SIGRTMIN+10 i3blocks
 
 # Print screen key binding
 bindsym Print exec maim --hidecursor -s ~/Images/screenshot-$(date "+%Y%m%d-%H%M%S").png
@@ -288,10 +285,10 @@ bindsym $mod+Shift+s exec screenkey --timeout 3 --position bottom --font-size sm
 bindsym Control+$mod+Shift+s exec pkill -9 screenkey
 
 # GUI file manager
-bindsym $mod+Shift+n exec pcmanfm --no-desktop
+bindsym $mod+Shift+n exec dolphin --new-window
 
 # Web browser
-bindsym $mod+Shift+w exec --no-startup-id ~/.local/bin/zotero, exec firefox-esr
+bindsym $mod+Shift+w exec firefox-esr
 
 # Au démarrage
 exec --no-startup-id dunst -verbosity crit
