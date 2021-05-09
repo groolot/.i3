@@ -10,6 +10,7 @@ set $displayport DP-1
 
 set $ws1 1 
 set $ws2 2 
+    assign [window_role="neomutt"] $ws2
 set $ws3 3 
     assign [class="^Firefox" instance="^(Firefox|Navigator)$"] $ws3
 set $ws4 4 
@@ -289,6 +290,9 @@ bindsym $mod+Shift+n exec dolphin --new-window
 
 # Web browser
 bindsym $mod+Shift+w exec firefox-esr
+
+# Mail with Neomutt
+bindsym $mod+Shift+m exec gnome-terminal --role=neomutt --title=neomutt --hide-menubar -- neomutt
 
 # Au démarrage
 exec --no-startup-id dunst -verbosity crit
