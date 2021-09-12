@@ -289,7 +289,7 @@ bindsym Control+$mod+Shift+s exec pkill -9 screenkey
 bindsym $mod+Shift+n exec dolphin --new-window
 
 # Web browser
-bindsym $mod+Shift+w exec firefox-esr
+bindsym $mod+Shift+w exec firefox
 
 # Mail with Neomutt
 bindsym $mod+Shift+m exec gnome-terminal --role=neomutt --title=neomutt --hide-menubar -- neomutt
