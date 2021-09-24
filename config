@@ -295,6 +295,7 @@ bindsym $mod+Shift+w exec firefox
 bindsym $mod+Shift+m exec gnome-terminal --role=neomutt --title=neomutt --hide-menubar -- neomutt
 
 # Au démarrage
+exec --no-startup-id compton --daemon --backend glx --glx-no-stencil
 exec --no-startup-id dunst -verbosity crit
 exec --no-startup-id xsetroot -solid "#000000"
 exec --no-startup-id /usr/bin/xset b off s off -dpms
