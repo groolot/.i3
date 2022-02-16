@@ -5,14 +5,17 @@ set $alt Mod1
 set $mod Mod4
 
 set $laptop eDP-1
-set $hdmi HDMI-1
-set $displayport DP-1
+set $laptopmode --mode 2560x1440
+set $hdmi HDMI-2
+set $hdmimode --auto
+set $displayport DP-2
+set $displayportmode --auto
 
 set $ws1 1 
 set $ws2 2 
     assign [class="thunderbird"] $ws2
 set $ws3 3 
-    assign [class="^Firefox" instance="^(Firefox|Navigator)$"] $ws3
+    assign [class="^Firefox" instance="^(Firefox|Navigator).*$"] $ws3
 set $ws4 4 
     assign [class="^[Qq]t[Cc]reator$"] $ws4
 set $ws5 5 
@@ -235,22 +238,22 @@ bindsym Ctrl+$mod+$alt+h mode $mode_bar
 bindsym $mod+$alt+h bar mode toggle
 
 # XRandR bindings
-set $mode_xrandr "(l)aptop, (h)DMI-1, (d)P-1, (c)opy, e(x)tend, (a)randr"
+set $mode_xrandr "(l)aptop, (h)DMI-2, (d)P-2, (c)opy, e(x)tend, (a)randr"
 mode $mode_xrandr {
-     bindsym l exec xrandr --output $laptop --auto --primary --output $hdmi --off            --output $displayport --off, mode "default"
-     bindsym h exec xrandr --output $laptop --off            --output $hdmi --auto --primary --output $displayport --off, mode "default"
-     bindsym d exec xrandr --output $laptop --off            --output $hdmi --off            --output $displayport --auto --primary, mode "default"
+     bindsym l exec xrandr --output $laptop $laptopmode --primary --output $hdmi --off               --output $displayport --off, mode "default"
+     bindsym h exec xrandr --output $laptop --off                 --output $hdmi $hdmimode --primary --output $displayport --off, mode "default"
+     bindsym d exec xrandr --output $laptop --off                 --output $hdmi --off               --output $displayport $displayportmode --primary, mode "default"
      bindsym x mode $mode_xrandr_extend
-     bindsym c exec xrandr --output $laptop --auto --primary --output $hdmi --auto --same-as $laptop --output $displayport --off, mode "default"
+     bindsym c exec xrandr --output $laptop $laptopmode --primary --output $hdmi $hdmimode --same-as $laptop --output $displayport --off, mode "default"
      bindsym a exec arandr, mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
 }
-set $mode_xrandr_extend "laptop extended to: (h)DMi-1, (d)P-1"
+set $mode_xrandr_extend "laptop extended to: (h)DMi-2, (d)P-2"
 mode $mode_xrandr_extend {
-     bindsym h exec xrandr --output $laptop --auto --primary --output $hdmi --auto --right-of $laptop --output $displayport --off, mode "default"
-     bindsym d exec xrandr --output $laptop --auto --primary --output $hdmi --off                     --output $displayport --auto --right-of $laptop, mode "default"
+     bindsym h exec xrandr --output $laptop $laptopmode --primary --output $hdmi $hdmimode --above $laptop --output $displayport --off, mode "default"
+     bindsym d exec xrandr --output $laptop $laptopmode --primary --output $hdmi --off                     --output $displayport $displayportmode --left-of $laptop, mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
@@ -294,4 +297,4 @@ bindsym $mod+Shift+t exec thunderbird
 # Au démarrage
 exec --no-startup-id hsetroot -solid "#000000"
 exec --no-startup-id /usr/bin/xset b off s off -dpms
-
+exec_always --no-startup-id xrandr --output $laptop $laptopmode --output $hdmi $hdmimode --left-of $laptop
