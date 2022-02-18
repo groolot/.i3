@@ -298,3 +298,19 @@ bindsym $mod+Shift+t exec thunderbird
 exec --no-startup-id hsetroot -solid "#000000"
 exec --no-startup-id /usr/bin/xset b off s off -dpms
 exec_always --no-startup-id xrandr --output $laptop $laptopmode --output $hdmi $hdmimode --left-of $laptop
+
+# Linux cpupower control
+# Ne pas oublier de modifier les permissions sudo pour les commandes cpupower
+# %sudo        ALL=(ALL:ALL) ALL, NOPASSWD: /usr/bin/cpupower frequency-set --governor powersave, /usr/bin/cpupower frequency-set --governor performance
+
+set $cpupower_powersave "sudo cpupower frequency-set --governor powersave && i3-msg bar mode hide && pkill -SIGRTMIN+13 i3blocks"
+set $cpupower_performance "sudo cpupower frequency-set --governor performance && i3-msg bar mode dock && pkill -SIGRTMIN+13 i3blocks"
+set $mode_cpupower "(p)erformance, power(s)ave"
+mode $mode_cpupower {
+     bindsym p exec $cpupower_performance, mode "default"
+     bindsym s exec $cpupower_powersave, mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+bindsym $mod+c mode $mode_cpupower
