@@ -238,6 +238,7 @@ bindsym Ctrl+$mod+$alt+h mode $mode_bar
 bindsym $mod+$alt+h bar mode toggle
 
 # XRandR bindings
+bindsym XF86Display exec arandr
 set $mode_xrandr "(l)aptop, (h)DMI-2, (d)P-2, (c)opy, e(x)tend, (a)randr"
 mode $mode_xrandr {
      bindsym l exec xrandr --output $laptop $laptopmode --primary --output $hdmi --off               --output $displayport --off, mode "default"
@@ -268,8 +269,8 @@ bindsym Control+$alt+l exec i3lock --color=000000 --dpms --nofork --show-failed-
 
 bindsym XF86MonBrightnessDown exec brightnessctl -q -d '*' -c 'backlight' set 10%-; exec pkill -SIGRTMIN+10 i3blocks
 bindsym Control+XF86MonBrightnessDown exec brightnessctl -q -d '*' -c 'backlight' set 1%-; exec pkill -SIGRTMIN+10 i3blocks
-bindsym XF86MonBrightnessUp exec exec brightnessctl -q -d '*' -c 'backlight' set +10%; exec pkill -SIGRTMIN+10 i3blocks
-bindsym Control+XF86MonBrightnessUp exec exec brightnessctl -q -d '*' -c 'backlight' set +1%; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86MonBrightnessUp exec brightnessctl -q -d '*' -c 'backlight' set +10%; exec pkill -SIGRTMIN+10 i3blocks
+bindsym Control+XF86MonBrightnessUp exec brightnessctl -q -d '*' -c 'backlight' set +1%; exec pkill -SIGRTMIN+10 i3blocks
 
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec dunstify -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -10%; exec pkill -SIGRTMIN+10 i3blocks
@@ -282,7 +283,7 @@ bindsym Shift+Print exec maim --hidecursor -s ~/Pictures/screenshot-$(date "+%Y%
 bindsym Control+Shift+Print exec maim --hidecursor ~/Pictures/screenshot-$(date "+%Y%m%d-%H%M%S").png
 
 # Screenkey
-bindsym $mod+Shift+s exec screenkey --timeout 3 --position bottom --font-size small --key-mode composed --mods-mode emacs --vis-shift --font-color "#ffffff" --bg-color "#000000" --compr-cnt 2 --font "monospace bold"
+bindsym $mod+Shift+s exec screenkey --no-systray --timeout 5 --scr 1 --position bottom --font-size small --key-mode composed --mods-mode emacs --vis-shift --font-color "#ffffff" --bg-color "#000000" --compr-cnt 2 --font "monospace bold" --mouse
 bindsym Control+$mod+Shift+s exec pkill -9 screenkey
 
 # GUI file manager
@@ -314,3 +315,13 @@ mode $mode_cpupower {
      bindsym Escape mode "default"
 }
 bindsym $mod+c mode $mode_cpupower
+
+####################
+# C*mus control ####
+bindsym Ctrl+$mod+Left exec cmus-remote --prev
+bindsym Ctrl+Shift+$mod+Left exec cmus-remote --raw "player-prev-album"
+bindsym Ctrl+$mod+Right exec cmus-remote --next
+bindsym Ctrl+Shift+$mod+Right exec cmus-remote --raw "player-next-album"
+bindsym Ctrl+$mod+Up exec cmus-remote --volume '+5%'
+bindsym Ctrl+$mod+Down exec cmus-remote --volume '-5%'
+bindsym Ctrl+$mod+p exec cmus-remote --pause
