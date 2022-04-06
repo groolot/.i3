@@ -168,6 +168,10 @@ bindsym $mod+Shift+bracketright move container to workspace $ws14
 bindsym $mod+Shift+backslash move container to workspace $ws15
 bindsym $mod+Shift+apostrophe move container to workspace $ws16
 
+# move container to another screen output
+bindsym Ctrl+$mod+$alt+Left move workspace to output left
+bindsym Ctrl+$mod+$alt+Right move workspace to output right
+
 # reload the configuration file
 bindsym $mod+Shift+Prior reload, exec dunstify -t 1500 "i3 reloaded!"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -260,10 +264,10 @@ mode $mode_xrandr_extend {
      bindsym Escape mode "default"
 }
 bindsym $mod+x mode $mode_xrandr
-bindsym Control+$mod+$alt+Up exec xrandr --output $hdmi --rotate normal
-bindsym Control+$mod+$alt+Right exec xrandr --output $hdmi --rotate right
-bindsym Control+$mod+$alt+Left exec xrandr --output $hdmi --rotate left
-bindsym Control+$mod+$alt+Down exec xrandr --output $hdmi --rotate inverted
+bindsym Control+$mod+$alt+Shift+Up exec xrandr --output $hdmi --rotate normal
+bindsym Control+$mod+$alt+Shift+Right exec xrandr --output $hdmi --rotate right --output $laptop --pos 1080x768
+bindsym Control+$mod+$alt+Shift+Left exec xrandr --output $hdmi --rotate left --output $laptop --pos 1080x768
+bindsym Control+$mod+$alt+Shift+Down exec xrandr --output $hdmi --rotate inverted
 
 bindsym Control+$alt+l exec i3lock --color=000000 --dpms --nofork --show-failed-attempts --ignore-empty-password
 
