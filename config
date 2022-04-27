@@ -330,3 +330,7 @@ bindsym Ctrl+Shift+$mod+Right exec cmus-remote --raw "player-next-album"
 bindsym Ctrl+$mod+Up exec cmus-remote --volume '+5%'
 bindsym Ctrl+$mod+Down exec cmus-remote --volume '-5%'
 bindsym Ctrl+$mod+p exec cmus-remote --pause
+
+##############################
+# Dunst configuration ########
+exec --no-startup-id dunst -conf ~/.config/dunst/config
