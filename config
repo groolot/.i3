@@ -334,3 +334,7 @@ bindsym Ctrl+$mod+p exec cmus-remote --pause
 ##############################
 # Dunst configuration ########
 exec --no-startup-id dunst -conf ~/.config/dunst/config
+
+##############################
+# Gromit-mpx draw on screen ##
+bindsym XF86Tools exec gromit-mpx --active
