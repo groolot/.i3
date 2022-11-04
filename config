@@ -36,7 +36,8 @@ set $ws9 9 
     assign [class="^Hexchat$"] $ws9
 set $ws10 10 
 set $ws11 11 
-set $ws12 12 
+set $ws12 12 
+    assign [class="^[Ss]lack$"] $ws12
 set $ws13 13 
 set $ws14 14 
 set $ws15 15 
@@ -344,3 +345,7 @@ exec --no-startup-id dunst -conf ~/.config/dunst/config
 ##############################
 # Gromit-mpx draw on screen ##
 bindsym XF86Tools exec gromit-mpx --active
+
+##############################
+# Slack configuration ########
+exec --no-startup-id slack
