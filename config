@@ -291,8 +291,8 @@ bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; e
 bindsym Control+XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +1%; exec pkill -SIGRTMIN+10 i3blocks
 
 # Print screen key binding
-bindsym Shift+Print exec maim --hidecursor -s ~/Pictures/screenshot-$(date "+%Y%m%d-%H%M%S").png
-bindsym Control+Shift+Print exec maim --hidecursor ~/Pictures/screenshot-$(date "+%Y%m%d-%H%M%S").png
+bindsym Print exec maim --capturebackground --hidecursor --quality 10 | tee ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png | xclip -selection clipboard -t image/png && dunstify -a maim -t 5000 "Screenshot fullscreen" "Copied to clipboard"
+bindsym Shift+Print exec maim --select --capturebackground --hidecursor --quality 10 | tee ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png | xclip -selection clipboard -t image/png && dunstify -a maim -t 5000 "Screenshot slopped" "Copied to clipboard"
 
 # Screenkey
 bindsym $mod+Shift+s exec screenkey --no-systray --timeout 5 --scr 1 --position bottom --font-size small --key-mode composed --mods-mode emacs --vis-shift --font-color "#ffffff" --bg-color "#000000" --compr-cnt 2 --font "monospace bold" --mouse
