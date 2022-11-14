@@ -178,7 +178,7 @@ bindsym Ctrl+$mod+$alt+Up move workspace to output up
 bindsym Ctrl+$mod+$alt+Down move workspace to output down
 
 # reload the configuration file
-bindsym $mod+Shift+Prior reload, exec dunstify -t 1500 "i3 reloaded!"
+bindsym $mod+Shift+Prior reload, exec dunstify -a i3 -t 1500 "i3 action" "reloaded!"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+Next restart
 
@@ -284,7 +284,7 @@ bindsym Control+XF86MonBrightnessUp exec brightnessctl -q -d '*' -c 'backlight' 
 bindsym Shift+XF86MonBrightnessUp exec brightnessctl -q -d '*' -c 'backlight' set 100%; exec pkill -SIGRTMIN+10 i3blocks
 
 bindsym XF86AudioMicMute exec /usr/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec dunstify -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec dunstify -a pactl -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -10%; exec pkill -SIGRTMIN+10 i3blocks
 bindsym Control+XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -1%; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +10%; exec pkill -SIGRTMIN+10 i3blocks
