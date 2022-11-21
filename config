@@ -47,19 +47,21 @@ set $ws16 16 
 # workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
 
-for_window [window_type="splash"] floating enable border none
+for_window [window_type="splash"] floating enable border none sticky enable
 for_window [class="^Screenkey$"] floating enable border none
 for_window [class="^[Xx][Cc]lock$"] floating enable border none
 for_window [class="^[Dd]isplay$"] floating enable border none
 for_window [class="^([Zz]athura|[Ee]vince|[Dd]evhelp|[Nn]autilus)$"] floating disable border pixel 3
 for_window [title="^.*GEM.*$"] floating enable border normal 1
 for_window [class="Audacity"] border normal 1
-for_window [class="Pavucontrol"] floating enable
+for_window [class="Pavucontrol"] floating enable sticky enable
 
 new_float 1pixel
 default_floating_border normal
 hide_edge_borders both
 bindsym $mod+b border toggle
+# sticky window toggle
+bindsym $mod+$alt+s sticky toggle
 
 # limit the floating container
 floating_minimum_size 75 x 50
