@@ -37,6 +37,7 @@ set $ws9 9 
 set $ws10 10 
 set $ws11 11 
 set $ws12 12 
+    assign [class="^[Ss]ignal$"] $ws12
     assign [class="^[Ss]lack$"] $ws12
 set $ws13 13 
 set $ws14 14 
@@ -351,3 +352,7 @@ bindsym XF86Tools exec gromit-mpx --active
 ##############################
 # Slack configuration ########
 exec --no-startup-id slack
+
+##############################
+# Signal configuration ########
+exec --no-startup-id signal-desktop
