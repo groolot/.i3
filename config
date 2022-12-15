@@ -287,7 +287,7 @@ bindsym Control+XF86MonBrightnessUp exec brightnessctl -q -d '*' -c 'backlight' 
 bindsym Shift+XF86MonBrightnessUp exec brightnessctl -q -d '*' -c 'backlight' set 100%; exec pkill -SIGRTMIN+10 i3blocks
 
 bindsym XF86AudioMicMute exec /usr/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec dunstify -a pactl -t 500 "Mute $(pacmd list-sinks | grep muted | awk '{print $2}')"; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -10%; exec pkill -SIGRTMIN+10 i3blocks
 bindsym Control+XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -1%; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioRaiseVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec /usr/bin/pactl -- set-sink-volume @DEFAULT_SINK@ +10%; exec pkill -SIGRTMIN+10 i3blocks
