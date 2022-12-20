@@ -334,12 +334,16 @@ bindsym $mod+c mode $mode_cpupower
 ####################
 # C*mus control ####
 bindsym Ctrl+$mod+Left exec cmus-remote --prev
+bindsym XF86AudioPrev exec cmus-remote --prev
 bindsym Ctrl+Shift+$mod+Left exec cmus-remote --raw "player-prev-album"
 bindsym Ctrl+$mod+Right exec cmus-remote --next
+bindsym XF86AudioNext exec cmus-remote --next
 bindsym Ctrl+Shift+$mod+Right exec cmus-remote --raw "player-next-album"
 bindsym Ctrl+$mod+Up exec cmus-remote --volume '+5%'
 bindsym Ctrl+$mod+Down exec cmus-remote --volume '-5%'
 bindsym Ctrl+$mod+p exec cmus-remote --pause
+bindsym XF86AudioPlay exec cmus-remote --pause
+bindsym XF86AudioPause exec cmus-remote --pause
 
 ##############################
 # Dunst configuration ########
