@@ -371,3 +371,8 @@ exec --no-startup-id slack
 ##############################
 # Signal configuration ########
 exec --no-startup-id signal-desktop
+
+##############################
+# Copy clipboard to EXSi #####
+# need xclip and xdotool #####
+bindsym $mod+Shift+v exec "sleep 0.5; xdotool type $(xclip -o -selection clipboard)"
