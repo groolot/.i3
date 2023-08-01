@@ -354,6 +354,17 @@ exec --no-startup-id dunst -conf ~/.config/dunst/config
 bindsym XF86Tools exec gromit-mpx --active
 
 ##############################
+# SupaSound
+set $mpv_opts --no-video --no-terminal
+#set $wpctl wpctl set-volume --pid $(pidof mpv) 0.8
+## Great Success #############
+bindsym Shift+XF86Favorites exec mpv $mpv_opts ~/.local/share/great_success.mp3
+## Je suis debile ############
+bindsym XF86Favorites exec mpv $mpv_opts ~/.local/share/je_suis_debileu.mp3
+## C'est pour ca #############
+bindsym Ctrl+Shift+XF86Favorites exec mpv $mpv_opts ~/.local/share/c-est_pour_ca.mp3
+
+##############################
 # Slack configuration ########
 exec --no-startup-id slack
 
