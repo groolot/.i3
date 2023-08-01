@@ -96,9 +96,11 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+Shift+twosuperior move scratchpad
 
 # Show the next scratchpad window
 bindsym $mod+grave scratchpad show
+bindsym $mod+twosuperior scratchpad show
 
 # change focus
 bindsym $mod+Left focus left
