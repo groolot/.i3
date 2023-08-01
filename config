@@ -332,6 +332,10 @@ mode $mode_cpupower {
 bindsym $mod+c mode $mode_cpupower
 
 ####################
+# Bluetooth ########
+exec --no-startup-id blueman-applet
+
+####################
 # C*mus control ####
 bindsym Ctrl+$mod+Left exec cmus-remote --prev
 bindsym XF86AudioPrev exec cmus-remote --prev
