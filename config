@@ -289,6 +289,7 @@ bindsym Control+XF86MonBrightnessUp exec brightnessctl -q -d '*' -c 'backlight' 
 bindsym Shift+XF86MonBrightnessUp exec brightnessctl -q -d '*' -c 'backlight' set 100%; exec pkill -SIGRTMIN+10 i3blocks
 
 bindsym XF86AudioMicMute exec /usr/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym Control+$mod+m exec /usr/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle && dunstify -a pactl -t 1000 "Capture status" "$(/usr/bin/pactl get-source-mute @DEFAULT_SOURCE@)"
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle; exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -5%; exec pkill -SIGRTMIN+10 i3blocks
 bindsym Control+XF86AudioLowerVolume exec pactl -- set-sink-mute @DEFAULT_SINK@ false; exec pactl -- set-sink-volume @DEFAULT_SINK@ -1%; exec pkill -SIGRTMIN+10 i3blocks
@@ -361,14 +362,16 @@ bindsym XF86Tools exec gromit-mpx --active
 
 ##############################
 # SupaSound
-set $mpv_opts --no-video --no-terminal
+set $launch_sound pw-cat --playback --volume 1 --target "alsa:pcm:0:front:0:playback"
 #set $wpctl wpctl set-volume --pid $(pidof mpv) 0.8
-## Great Success #############
-bindsym Shift+XF86Favorites exec mpv $mpv_opts ~/.local/share/great_success.mp3
 ## Je suis debile ############
-bindsym XF86Favorites exec mpv $mpv_opts ~/.local/share/je_suis_debileu.mp3
+bindsym XF86Favorites exec $launch_sound ~/.local/share/je_suis_debileu.mp3
+## Vous avez bu Didier #######
+bindsym $alt+XF86Favorites exec $launch_sound ~/.local/share/vous_avez_bu_didier.mp3
+## Great Success #############
+bindsym Shift+XF86Favorites exec $launch_sound ~/.local/share/great_success.mp3
 ## C'est pour ca #############
-bindsym Ctrl+Shift+XF86Favorites exec mpv $mpv_opts ~/.local/share/c-est_pour_ca.mp3
+bindsym Ctrl+Shift+XF86Favorites exec $launch_sound ~/.local/share/c-est_pour_ca.mp3
 
 ##############################
 # Slack configuration ########
