@@ -4,6 +4,7 @@
 set $alt Mod1
 set $mod Mod4
 set $terminal i3-sensible-terminal
+set $mixer_command kitty --detach --class=mixer --title=mixer pulsemixer --color 1
 set $locker i3lock --color=000000 --nofork --show-failed-attempts --ignore-empty-password
 
 include workspaces.conf
