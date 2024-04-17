@@ -9,7 +9,7 @@ set $locker i3lock --color=000000 --nofork --show-failed-attempts --ignore-empty
 
 include workspaces.conf
 
-include `hostname`.conf
+include host-`hostname`.conf
 
 include window_design.conf
 include assignements.conf
